@@ -18,7 +18,7 @@
           <span class="date">{{commentInfo.created | showDate}}</span>
           <span>{{commentInfo.style}}</span>
         </div>
-        <div class="info-imgs">
+        <div class="info-imgs" v-if="commentInfo.images">
           <img :src="item" v-for="(item, index) in commentInfo.images" :key="index">
         </div>
       </div>

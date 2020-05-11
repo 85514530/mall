@@ -40,7 +40,7 @@ import Goods from '@/components/content/goods/Goods'
 import Scroll from '@/components/common/scroll/Bscroll'
 import BackTop from '@/components/content/backTop/BackTop'
 
-import {debounce} from '@/common/utils'
+import {itemLinstenerMixin} from '@/common/mixins'
 
 import { getHomeMultidata, getHomeGoods} from 'network/home'
 
@@ -70,7 +70,8 @@ export default {
       isShowBackTop: false,  //控制backTop是否显示
       tabOffsetTop: 0,
       isTabFiexd: false,
-      saveY: 0
+      saveY: 0,
+      itemListenr: null
     }
   },
   computed: {
@@ -84,7 +85,7 @@ export default {
   },
   deactivated() {
     this.saveY = this.$refs.scroll.scroll.y
-
+    this.$bus.$off('goodsImgLoad', this.itemListenr)
   },
   created() {
     // 创建时加载首页所需数据
@@ -97,16 +98,7 @@ export default {
   destroyed() {
     console.log('home销毁')
   },
-  mounted() {
-    const refresh = debounce(this.$refs.scroll.refresh, 200)
-    // 监听goodsitem图片加载完成
-    this.$bus.$on('goodsImgLoad', () => {
-      refresh()
-    })
-    
-    
-
-  },
+  mixins:[itemLinstenerMixin],
   methods: {
     /**
      * 事件监听相关方法

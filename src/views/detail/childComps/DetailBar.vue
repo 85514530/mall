@@ -32,6 +32,7 @@ export default {
     },
     itemClick(index) {
       this.crrentIndex = index
+      this.$emit('titleClick', index)
     }
   },
 }
