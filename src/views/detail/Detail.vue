@@ -154,12 +154,7 @@ export default {
       product.id = this.id
 
       this.$store.dispatch('addCart', product).then(res => {
-        console.log(res)
-        this.message = res
-        this.show = true
-        setTimeout(() => {
-          this.show = false
-        }, 1500);
+        this.$toast.show(res, 2000)
       })
     }
   },

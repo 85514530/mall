@@ -9,7 +9,7 @@
       合计：<span>{{totalPrice}}</span>
     </div>
 
-    <div class="calculate">立即结算({{countPrice}})</div>
+    <div @click="pay" class="calculate">立即结算({{countPrice}})</div>
   </div>
 </template>
 
@@ -53,6 +53,11 @@ export default {
         this.cartList.forEach(item => {
           item.checked = true
         });
+      }
+    },
+    pay() {
+      if(!this.isChecked) {
+        this.$toast.show('请选择购买的商品')
       }
     }
   },
