@@ -13,8 +13,9 @@
       <div class="split"></div>
       <goods-item :goods="recommend" ref="recommend" />
     </scroll>
-    <detail-bottom-bar />
+    <detail-bottom-bar @addCart="addCart" />
     <back-top v-show="isShowBackTop" @click.native="backTop" />
+    <toast :message="message" :isShow="show" />
   </div>
 </template>
 
@@ -31,6 +32,8 @@ import DetailBottomBar from './childComps/DetailBottomBar'
 import Scroll from '@/components/common/scroll/Bscroll'
 import GoodsItem from '@/components/content/goods/Goods'
 import BackTop from '@/components/content/backTop/BackTop'
+
+import Toast from '@/components/common/toast/Toast'
 
 import {itemLinstenerMixin, backTopMixin} from '@/common/mixins'
 import {debounce} from '@/common/utils'
@@ -50,7 +53,8 @@ export default {
     DiscussUser,
     GoodsItem,
     BackTop,
-    DetailBottomBar
+    DetailBottomBar,
+    Toast
   },
   data() {
     return {
@@ -66,6 +70,8 @@ export default {
       titleOffsetTop: [],
       titleIndex: 0,
       getTitleY: null,
+      message: '',
+      show: false
     }
   },
   mixins: [itemLinstenerMixin, backTopMixin],
@@ -73,6 +79,7 @@ export default {
     this.id = this.$route.params.id
     getDetal(this.id).then(res => {
       const data = res.result
+      // console.log(data)
       // 获取顶部的轮播图片
       this.topImgs = data.itemInfo.topImages
       // 获取商品信息
@@ -87,7 +94,6 @@ export default {
       this.discuss = data.rate.list[0]
       // 获取每个标题对应所在position位置
       this.getTitleY = debounce(() => {
-        console.log("赋值中")
         const height = 44
         this.titleOffsetTop = []
         this.titleOffsetTop.push(0)
@@ -131,13 +137,30 @@ export default {
         }
       }
     },
-    // 返回顶部
-    backTop() {
-      this.$refs.scroll.scrollTo(0, 0, 2000)
-    },
+    // // 返回顶部 通过mixin管理
+    // backTop() {
+    //   this.$refs.scroll.scrollTo(0, 0, 2000)
+    // },
     // 点击标题时界面移动到对应位置
     titleClick(index) {
       this.$refs.scroll.scrollTo(0, -this.titleOffsetTop[index], 2000)
+    },
+    addCart() {
+      const product = {}
+      product.image = this.topImgs[0]
+      product.title = this.goods.title
+      product.desc = this.goods.desc
+      product.price = this.goods.realPrice
+      product.id = this.id
+
+      this.$store.dispatch('addCart', product).then(res => {
+        console.log(res)
+        this.message = res
+        this.show = true
+        setTimeout(() => {
+          this.show = false
+        }, 1500);
+      })
     }
   },
   

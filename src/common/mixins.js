@@ -28,10 +28,12 @@ export const backTopMixin = {
       isShowBackTop: false
     }
   },
-  backTop() {
-    this.$refs.scroll.scrollTo(0, 0, 1000)
+  methods: {
+    backTop() {
+      this.$refs.scroll.scrollTo(0, 0, 1000)
+    },
+    listenerBackTop(position) {
+      this.isShowBackTop = -position.y > 1000 
+    }
   },
-  listenerBackTop(position) {
-    this.isShowBackTop = -position.y > 1000 
-  }
 }

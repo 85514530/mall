@@ -25,7 +25,7 @@
 export default {
   methods: {
     addCart() {
-      
+      this.$emit('addCart')
     }
   },
 }
