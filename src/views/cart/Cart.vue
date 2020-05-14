@@ -4,7 +4,7 @@
       <h4 slot="center">购物车({{cartLength}})</h4>
     </nav-bar>
     <cart-list/>
-    <bot-bar/>
+    <bot-bar class="botbar" />
   </div>
 </template>
 
@@ -37,6 +37,13 @@ export default {
     background-color: #ecf0f1;
   }
   .nav-bar {
-    background-color: #FEA47F;
+    color: #fff;
+    background-color: #ff7675;
+  }
+  .botbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
   }
 </style>

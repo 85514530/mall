@@ -34,8 +34,11 @@ export default {
 </script>
 
 <style scoped>
+  .cart {
+    height: 100vh;
+  }
   .scroll {
     overflow: hidden;
-    height: calc(100vh - 93px - 40px);
+    height: calc(100% - 93px - 40px);
   }
 </style>

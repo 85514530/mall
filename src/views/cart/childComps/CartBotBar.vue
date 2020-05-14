@@ -57,7 +57,12 @@ export default {
     },
     pay() {
       if(!this.isChecked) {
-        this.$toast.show('请选择购买的商品')
+        if(this.cartList.find(item => item.checked)){
+          this.$toast.show('购买成功1')
+        }else
+          this.$toast.show('请选择购买的商品')
+      }else{
+        this.$toast.show('购买成功2')
       }
     }
   },

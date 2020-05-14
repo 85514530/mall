@@ -46,7 +46,7 @@ export default {
  }
  .serve {
    flex: 0.5;
-   background-color: #F8EFBA;
+   background-color: #f5f6fa;
    display: flex;
  }
  .serve>div {
@@ -74,12 +74,12 @@ export default {
  } */
  .cart {
    flex: 0.3;
-   color: #34495e;
-   background-color: #f1c40f;
+   color: #2f3542;
+   background-color: #dfe6e9;
  }
  .buy {
    flex: 0.2;
-   color: #ecf0f1;
+   color: #f1f2f6;
    background-color: #58B19F;
  }
 </style>

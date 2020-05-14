@@ -6,6 +6,7 @@
       @scroll="contentScroll">
       <detail-swiper :top-imgs="topImgs" />
       <detail-info :goods="goods"/>
+      <div class="split"></div>
       <shop-info :shop="shops"/>
       <detail-goods-info @imgLoad="imgLoad" :detail-goods="detailGoods" />
       <detail-paramInfo :param-info="paramsInfo" ref="param"/>
@@ -91,7 +92,10 @@ export default {
       // 获取参数
       this.paramsInfo = new GoodsParam(data.itemParams.info, data.itemParams.rule)
       // 获取用户评论
-      this.discuss = data.rate.list[0]
+      if(undefined != data.rate.list) {
+        this.discuss = data.rate.list[0]
+      }
+
       // 获取每个标题对应所在position位置
       this.getTitleY = debounce(() => {
         const height = 44
@@ -177,6 +181,8 @@ export default {
     height: calc(100vh - 93px);
   }
   .split {
-    margin: 10px 0;
+    height: 8px;
+    margin-bottom: 5px;
+    background: rgba(100, 100, 100, .1)
   }
 </style>
