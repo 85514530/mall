@@ -43,3 +43,9 @@ export class GoodsParam {
   }
 }
 
+export function Recommend() {
+  return request({
+    url: '/recommend'
+  })
+}
+

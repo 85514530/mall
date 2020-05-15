@@ -16,7 +16,6 @@
     </scroll>
     <detail-bottom-bar @addCart="addCart" />
     <back-top v-show="isShowBackTop" @click.native="backTop" />
-    <toast :message="message" :isShow="show" />
   </div>
 </template>
 
@@ -39,8 +38,7 @@ import Toast from '@/components/common/toast/Toast'
 import {itemLinstenerMixin, backTopMixin} from '@/common/mixins'
 import {debounce} from '@/common/utils'
 
-import {getDetal, Goods ,Shop, GoodsParam} from '@/network/detail'
-import {getHomeGoods} from '@/network/home'
+import {getDetal, Goods ,Shop, GoodsParam, Recommend} from '@/network/detail'
 export default {
   name: 'Detail',
   components: {
@@ -71,6 +69,7 @@ export default {
       titleOffsetTop: [],
       titleIndex: 0,
       getTitleY: null,
+      goodsDetail: {},
       message: '',
       show: false
     }
@@ -81,10 +80,13 @@ export default {
     getDetal(this.id).then(res => {
       const data = res.result
       // console.log(data)
+      console.log(data)
       // 获取顶部的轮播图片
       this.topImgs = data.itemInfo.topImages
       // 获取商品信息
       this.goods = new Goods(data.itemInfo, data.columns, data.shopInfo.services)
+      
+      this.goodsDetail = data.skuInfo
       // 获取店铺信息
       this.shops = new Shop(data.shopInfo)
       // 获取商品详情
@@ -109,7 +111,7 @@ export default {
       }, 200)
     })
     // 推荐数据
-    getHomeGoods('pop', 1).then(res => {
+    Recommend().then(res => {
       this.recommend = res.data.list
     })
   },
@@ -147,7 +149,7 @@ export default {
     // },
     // 点击标题时界面移动到对应位置
     titleClick(index) {
-      this.$refs.scroll.scrollTo(0, -this.titleOffsetTop[index], 2000)
+      this.$refs.scroll.scrollTo(0, -this.titleOffsetTop[index], 0)
     },
     addCart() {
       const product = {}

@@ -3,7 +3,7 @@
     <nav-bar class="navbar">
       <div slot="center">商品分类</div>
     </nav-bar>
-    <category-menu/>
+    <!-- <category-menu/> -->
     <div class="conter" ref="aaa">
       
     </div>
@@ -12,16 +12,16 @@
 
 <script>
 
-import BScroll from 'better-scroll'
+// import BScroll from 'better-scroll'
 
-import CategoryMenu from './childComps/CategoryMenu'
+// import CategoryMenu from './childComps/CategoryMenu'
 
 import NavBar from '@/components/common/navbar/NavBar'
 
 export default {
   components: {
     NavBar,
-    CategoryMenu
+    // CategoryMenu
   },
   data() {
     return {
@@ -29,24 +29,24 @@ export default {
     }
   },
   // 组件创建完后调用
-  mounted() {
-    this.bscroll = new BScroll(document.querySelector('.conter'), {
-      probeType: 2,
-      pullUpLoad: true
-    })
+  // mounted() {
+  //   this.bscroll = new BScroll(document.querySelector('.conter'), {
+  //     probeType: 2,
+  //     pullUpLoad: true
+  //   })
 
-    this.bscroll.on('scroll', (position) => {
-      console.log(position)
-    })
-    this.bscroll.on('pullingUp', () => {
-      console.log('上拉加载更多')
-    })
-  },
-  methods: {
-    itemClick() {
-      console.log('---')
-    }
-  },
+  //   this.bscroll.on('scroll', (position) => {
+  //     console.log(position)
+  //   })
+  //   this.bscroll.on('pullingUp', () => {
+  //     console.log('上拉加载更多')
+  //   })
+  // },
+  // methods: {
+  //   itemClick() {
+  //     console.log('---')
+  //   }
+  // },
 }
 </script>
 

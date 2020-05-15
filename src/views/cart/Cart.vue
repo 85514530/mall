@@ -42,8 +42,9 @@ export default {
   }
   .botbar {
     position: fixed;
-    bottom: 0;
+    bottom: 49px;
     left: 0;
     right: 0;
+    z-index: 99;
   }
 </style>
