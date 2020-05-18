@@ -5,7 +5,7 @@ import {
 
 export default {
   [ADDCOUNT](state, payload) {
-    payload.count++
+    payload.count += payload.addsum
   },
   [ADDCART](state, payload) {
     state.cartList.push(payload)

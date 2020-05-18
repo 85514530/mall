@@ -13,10 +13,10 @@ export default {
     return new Promise((resolve, reject) => {
       let oldProduct = context.state.cartList.find(item => item.id === payload.id)
       if(oldProduct) {
+        oldProduct.addsum = payload.count
         context.commit(ADDCOUNT, oldProduct)
-        resolve("数量+1")
+        resolve("数量+" + payload.count)
       }else {
-        payload.count = 1
         payload.checked = true
         context.commit(ADDCART, payload)
         resolve('添加成功')

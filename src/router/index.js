@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 
 const Home = () => import('../views/home/Home')
 const Category = () => import('../views/category/Category')
@@ -39,8 +41,18 @@ const routes = [
     component: Detail
   }
 ]
-
-export default new Router({
+const router = new Router({
   routes,
   mode:'history'
+})
+export default router
+
+router.beforeEach((to, from, next) => {
+  NProgress.start()
+  document.title = to.matched[0].meta.title
+  next()
+})
+
+router.afterEach((to, from) => {
+  NProgress.done()
 })

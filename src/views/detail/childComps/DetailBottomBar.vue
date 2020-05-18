@@ -34,9 +34,9 @@ export default {
 <style scoped>
  .bottom-bar {
    position: relative;
-   /* bottom: 0;
+   bottom: 0;
    left: 0;
-   right: 0; */
+   right: 0;
    height: 49px;
    line-height: 49px;
    text-align: center;

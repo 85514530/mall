@@ -1,6 +1,7 @@
 <template>
   <div id="detail">
     <detail-bar ref="nav" class="topBar" @titleClick="titleClick"/>
+    <datail-set-meal class="setmeal" ref="setmeal" :goods-detail="goodsDetail" :id="id" :desc="goods.desc"/>
     <scroll ref="scroll" class="content" 
       :probeType="3"
       @scroll="contentScroll">
@@ -14,7 +15,8 @@
       <div class="split"></div>
       <goods-item :goods="recommend" ref="recommend" />
     </scroll>
-    <detail-bottom-bar @addCart="addCart" />
+    <detail-bottom-bar class="Cart" @addCart="addCart"/>
+    <!-- 套餐 -->
     <back-top v-show="isShowBackTop" @click.native="backTop" />
   </div>
 </template>
@@ -28,6 +30,7 @@ import DetailGoodsInfo from './childComps/DetailGoodsInfo'
 import DetailParamInfo from './childComps/DetailParamInfo'
 import DiscussUser from './childComps/Discuss'
 import DetailBottomBar from './childComps/DetailBottomBar'
+import DatailSetMeal from './childComps/DatailSetMeal'
 
 import Scroll from '@/components/common/scroll/Bscroll'
 import GoodsItem from '@/components/content/goods/Goods'
@@ -53,7 +56,8 @@ export default {
     GoodsItem,
     BackTop,
     DetailBottomBar,
-    Toast
+    Toast,
+    DatailSetMeal
   },
   data() {
     return {
@@ -80,12 +84,12 @@ export default {
     getDetal(this.id).then(res => {
       const data = res.result
       // console.log(data)
-      console.log(data)
       // 获取顶部的轮播图片
       this.topImgs = data.itemInfo.topImages
       // 获取商品信息
       this.goods = new Goods(data.itemInfo, data.columns, data.shopInfo.services)
-      
+      // 商品尺码
+      // console.log(data.skuInfo)
       this.goodsDetail = data.skuInfo
       // 获取店铺信息
       this.shops = new Shop(data.shopInfo)
@@ -152,16 +156,8 @@ export default {
       this.$refs.scroll.scrollTo(0, -this.titleOffsetTop[index], 0)
     },
     addCart() {
-      const product = {}
-      product.image = this.topImgs[0]
-      product.title = this.goods.title
-      product.desc = this.goods.desc
-      product.price = this.goods.realPrice
-      product.id = this.id
-
-      this.$store.dispatch('addCart', product).then(res => {
-        this.$toast.show(res, 2000)
-      })
+      const setmeal = document.querySelector('.setmeal')
+      setmeal.style.transform = 'translateY(0%)';
     }
   },
   
@@ -187,4 +183,9 @@ export default {
     margin-bottom: 5px;
     background: rgba(100, 100, 100, .1)
   }
+  .setmeal {
+    transform: translateY(100%);
+    transition: transform 300ms linear
+  }
+
 </style>
