@@ -166,17 +166,21 @@ export default {
 
 <style scoped>
   .topBar {
-    position: relative;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
     z-index: 9;
     background-color: #fff;
   }
   #detail {
     position: relative;
+    height: 100vh;
     z-index: 99;
     background-color: #fff;
   }
   .content {
-    height: calc(100vh - 93px);
+    height: calc(100% - 93px);
   }
   .split {
     height: 8px;

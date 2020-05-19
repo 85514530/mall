@@ -33,7 +33,7 @@ export default {
 
 <style scoped>
  .bottom-bar {
-   position: relative;
+   position: fixed;
    bottom: 0;
    left: 0;
    right: 0;

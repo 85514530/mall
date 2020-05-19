@@ -3,7 +3,7 @@
     <nav-bar class="nav-bar">
       <h4 slot="center">购物车({{cartLength}})</h4>
     </nav-bar>
-    <cart-list/>
+    <cart-list class="content"/>
     <bot-bar class="botbar" />
   </div>
 </template>
@@ -37,8 +37,19 @@ export default {
     background-color: #ecf0f1;
   }
   .nav-bar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
     color: #fff;
     background-color: #ff7675;
+  }
+  .content {
+    position: fixed;
+    top: 44px;
+    right: 0;
+    left: 0;
+    height: 100vh;
   }
   .botbar {
     position: fixed;

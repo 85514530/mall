@@ -5,13 +5,10 @@ import {
 
 export default {
   [ADDCOUNT](state, payload) {
-    payload.count += payload.addsum
+    payload[0].count += payload[1]
   },
   [ADDCART](state, payload) {
     state.cartList.push(payload)
   },
-  upChecked(state, payload, ischecked) {
-    payload.checked = ischecked
-  }
 
 }

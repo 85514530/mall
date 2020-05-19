@@ -49,8 +49,13 @@ export default router
 
 router.beforeEach((to, from, next) => {
   NProgress.start()
-  document.title = to.matched[0].meta.title
-  next()
+  if(to.path.indexOf('/detail') != -1) {
+    document.title = '商品详情'
+    next()
+  }else {
+    document.title = to.matched[0].meta.title
+    next()
+  }
 })
 
 router.afterEach((to, from) => {
