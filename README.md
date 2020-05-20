@@ -15,10 +15,8 @@ npm run serve
 npm run build
 ```
 
-### Compiles and minifies for production
-```
-/src/views/home/childComps路径下的两个子类需要设置为大写
-```
+### /src/views/home/childComps路径下的两个子类需要设置为大写
+
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
