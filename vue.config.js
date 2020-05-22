@@ -9,7 +9,8 @@ module.exports = {
         'views': '@/views'
       }
     }
-  }
+  },
+  publicPath: './'
 }
 // const path = require('path')
 // const resolve = dir => path.join(__dirname, dir)
